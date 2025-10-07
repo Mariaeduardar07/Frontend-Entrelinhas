@@ -218,3 +218,248 @@
     to { opacity: 0.8; transform: scale(1.05); }
 }
 
+/* ========== RESPONSIVIDADE ========== */
+
+/* Tablets grandes e laptops pequenos (1024px - 1200px) */
+@media (max-width: 1200px) {
+    .heroContent {
+        max-width: 1000px;
+        gap: 60px;
+    }
+    
+    .heroTitle {
+        font-size: 3rem;
+    }
+    
+    .heroDescription {
+        font-size: 1.2rem;
+    }
+    
+    .imageContainer {
+        width: 340px;
+        height: 340px;
+    }
+}
+
+/* Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+    .hero {
+        padding: 3rem 1.5rem;
+        min-height: calc(100vh - 4rem);
+    }
+    
+    .heroContent {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 50px;
+        text-align: center;
+    }
+    
+    .heroTitle {
+        font-size: 2.5rem;
+    }
+    
+    .heroDescription {
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto 40px auto;
+    }
+    
+    .stats {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+    
+    .stat {
+        min-width: 180px;
+        padding: 1.5rem 1rem;
+    }
+    
+    .statNumber {
+        font-size: 2.5rem;
+    }
+    
+    .imageContainer {
+        width: 320px;
+        height: 320px;
+    }
+    
+    .badge {
+        margin: 0 auto 24px auto;
+    }
+}
+
+/* Tablets pequenos (600px - 768px) */
+@media (max-width: 768px) {
+    .hero {
+        padding: 2.5rem 1rem;
+    }
+    
+    .heroContent {
+        gap: 40px;
+    }
+    
+    .heroTitle {
+        font-size: 2.2rem;
+        line-height: 1.2;
+    }
+    
+    .heroDescription {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    
+    .stats {
+        gap: 1rem;
+    }
+    
+    .stat {
+        min-width: 140px;
+        padding: 1.2rem 0.8rem;
+        box-shadow: none;
+    }
+    
+    .statNumber {
+        font-size: 2rem;
+    }
+    
+    .statLabel {
+        font-size: 0.85rem;
+    }
+    
+    .imageContainer {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .profileImg {
+        box-shadow: none;
+    }
+    
+    .imageGlow {
+        display: none;
+    }
+    
+    .badge {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+}
+
+/* Smartphones (480px - 600px) */
+@media (max-width: 600px) {
+    .hero {
+        padding: 2rem 1rem;
+        min-height: auto;
+    }
+    
+    .heroContent {
+        gap: 30px;
+    }
+    
+    .heroTitle {
+        font-size: 1.8rem;
+        margin-bottom: 16px;
+    }
+    
+    .heroDescription {
+        font-size: 0.95rem;
+        margin-bottom: 30px;
+    }
+    
+    .stats {
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+    
+    .stat {
+        min-width: auto;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        padding: 1rem;
+        box-shadow: none;
+    }
+    
+    .statNumber {
+        font-size: 1.8rem;
+    }
+    
+    .statLabel {
+        font-size: 0.8rem;
+    }
+    
+    .imageContainer {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .profileImg {
+        border: 6px solid rgba(255, 255, 255, 0.8);
+        box-shadow: none;
+    }
+    
+    .imageGlow {
+        display: none;
+    }
+}
+
+/* Smartphones pequenos (até 480px) */
+@media (max-width: 480px) {
+    .hero {
+        padding: 1.5rem 0.8rem;
+    }
+    
+    .heroContent {
+        gap: 25px;
+    }
+    
+    .heroTitle {
+        font-size: 1.6rem;
+        margin-bottom: 12px;
+    }
+    
+    .heroDescription {
+        font-size: 0.9rem;
+        margin-bottom: 25px;
+    }
+    
+    .stats {
+        margin-top: 1rem;
+    }
+    
+    .stat {
+        padding: 0.8rem;
+        max-width: 280px;
+        box-shadow: none;
+    }
+    
+    .statNumber {
+        font-size: 1.5rem;
+    }
+    
+    .statLabel {
+        font-size: 0.75rem;
+    }
+    
+    .imageContainer {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .badge {
+        font-size: 0.8rem;
+        padding: 4px 10px;
+    }
+    
+    .profileImg {
+        box-shadow: none;
+    }
+    
+    .imageGlow {
+        display: none;
+    }
+}
+
