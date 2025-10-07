@@ -116,6 +116,7 @@
 .readMore {
 	display: inline-flex;
 	align-items: center;
+	justify-content: center;
 	gap: 0.6rem;
 	color: var(--cor-do-banner, #2c3838);
 	font-size: 0.95rem;
