@@ -8,7 +8,7 @@ export default function CTASection({
   description = "Descubra biografias fascinantes, explore obras marcantes e conecte-se com o rico patrimônio da literatura brasileira.",
   primaryHref = "/autores",
   primaryLabel = "Conhecer Autores",
-  secondaryHref = "/sobre",
+  secondaryHref = "/sobreMim",
   secondaryLabel = "Saiba Mais",
 }) {
   return (
