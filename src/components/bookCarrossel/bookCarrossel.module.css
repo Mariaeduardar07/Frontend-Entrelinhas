@@ -1,0 +1,440 @@
+/* Container Principal */
+.carrossel {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(246, 244, 240, 0.9) 100%);
+  border: 1px solid rgba(163, 136, 123, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.headerIcon {
+  color: var(--cor-3-detalhes);
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--cor-do-banner);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--cor-3);
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* Container do Carrossel */
+.carrosselContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Botões de Navegação */
+.navButton {
+  background: var(--cor-3-detalhes);
+  color: white;
+  border: none;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.navButton:hover:not(:disabled) {
+  background: var(--cor-do-banner);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(163, 136, 123, 0.3);
+}
+
+.navButton:disabled {
+  background: rgba(163, 136, 123, 0.3);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Container dos Livros */
+.booksContainer {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.booksWrapper {
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 1.5rem;
+  padding: 0 0.75rem;
+}
+
+/* Card do Livro */
+.bookCard {
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0 0.75rem;
+}
+
+.bookCard:hover {
+  transform: translateY(-8px);
+}
+
+.bookImageContainer {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  margin-bottom: 0.8rem;
+  overflow: hidden;
+  background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.bookImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.bookCard:hover .bookImage {
+  transform: scale(1.05);
+}
+
+/* Botão de Favorito */
+.favoriteButton {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  z-index: 3;
+}
+
+.favoriteButton:hover {
+  background: rgba(255, 255, 255, 1);
+  color: #e74c3c;
+  transform: scale(1.1);
+}
+
+.favoriteButton.favorited {
+  background: #e74c3c;
+  color: white;
+}
+
+/* Overlay de Hover */
+.bookOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(44, 56, 56, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(2px);
+}
+
+.bookCard:hover .bookOverlay {
+  opacity: 1;
+}
+
+.readMore {
+  color: white;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  background: var(--cor-3-detalhes);
+  transition: all 0.3s ease;
+}
+
+.readMore:hover {
+  background: var(--cor-do-banner);
+  transform: translateY(-2px);
+}
+
+/* Informações do Livro */
+.bookInfo {
+  text-align: center;
+  padding: 0 0.5rem;
+}
+
+.bookTitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cor-do-banner);
+  margin: 0 0 0.6rem 0;
+  line-height: 1.3;
+  min-height: 2.2rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.bookYear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--cor-3-detalhes);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.bookSummary {
+  color: var(--cor-3);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Indicadores */
+.indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  background: rgba(163, 136, 123, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background: var(--cor-3-detalhes);
+  transform: scale(1.2);
+}
+
+.indicator:hover {
+  background: var(--cor-do-banner);
+}
+
+/* Estado Sem Livros */
+.noBooks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--cor-3);
+  background: rgba(246, 244, 240, 0.3);
+  margin: 2rem 0;
+}
+
+.noBooks svg {
+  color: var(--cor-3-detalhes);
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+.noBooks h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  color: var(--cor-do-banner);
+  margin: 0 0 0.5rem 0;
+}
+
+.noBooks p {
+  color: var(--cor-3);
+  font-size: 1rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .carrossel {
+    padding: 1.5rem;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .bookImageContainer {
+    height: 200px;
+  }
+  
+  .booksWrapper {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .carrossel {
+    padding: 1rem;
+    margin: 2rem 0;
+  }
+  
+  .header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .title {
+    font-size: 1.6rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .carrosselContainer {
+    gap: 0.5rem;
+  }
+  
+  .navButton {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .bookImageContainer {
+    height: 170px;
+  }
+  
+  .bookTitle {
+    font-size: 1rem;
+  }
+  
+  .booksWrapper {
+    gap: 0.5rem;
+    padding: 0 0.25rem;
+  }
+  
+  .bookCard {
+    padding: 0 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .carrossel {
+    padding: 0.75rem;
+  }
+  
+  .title {
+    font-size: 1.4rem;
+  }
+  
+  .carrosselContainer {
+    gap: 0.25rem;
+  }
+  
+  .navButton {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .bookImageContainer {
+    height: 150px;
+  }
+  
+  .favoriteButton {
+    width: 28px;
+    height: 28px;
+    top: 0.4rem;
+    right: 0.4rem;
+  }
+  
+  .readMore {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* Animações personalizadas */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bookCard {
+  animation: slideIn 0.5s ease-out;
+}
+
+.bookCard:nth-child(1) { animation-delay: 0.1s; }
+.bookCard:nth-child(2) { animation-delay: 0.2s; }
+.bookCard:nth-child(3) { animation-delay: 0.3s; }
+
+/* Melhorias de acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  .booksWrapper,
+  .bookCard,
+  .bookImage,
+  .navButton,
+  .indicator {
+    transition: none;
+    animation: none;
+  }
+  
+  .bookCard:hover {
+    transform: none;
+  }
+}
+
+/* Alto contraste */
+@media (prefers-contrast: high) {
+  .carrossel {
+    border: 2px solid #043222;
+    background: rgba(255, 255, 255, 0.98);
+  }
+  
+  .navButton {
+    border: 2px solid #043222;
+  }
+  
+  .bookImageContainer {
+    border: 2px solid #043222;
+  }
+}
