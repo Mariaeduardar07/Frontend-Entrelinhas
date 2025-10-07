@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import axios from "axios";
-import AuthorCard from "../authorCard/";
+import AuthorCard from "../authorCarouselCard";
 import styles from "./authorCarousel.module.css";
 
 // Import Swiper styles

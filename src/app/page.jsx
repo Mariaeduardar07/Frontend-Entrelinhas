@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import styles from "./page.module.css";
 import Banner from "@/components/bannerHome";
 import Objectives from "@/components/objectives";
@@ -8,8 +5,6 @@ import AuthorCarousel from "@/components/authorCarousel";
 import CTASection from "@/components/CTASection";
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
-
   return (
     <div className={styles.container}>
       <Banner

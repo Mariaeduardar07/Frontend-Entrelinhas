@@ -1,73 +1,38 @@
 import Link from "next/link";
-import { BookOpen } from "lucide-react";
-import styles from "./author.module.css";
+import styles from "./authorCard.module.css";
 
-export default function AuthorCard({ autor }) {
+export default function AuthorCard({ autor, getImageUrl }) {
   const fallbackImage = "/image/imgBanner.png";
-  
-  // Processa a imageUrl do backend
-  const getImageUrl = (autor) => {
-    if (!autor.imageUrl) return fallbackImage;
-    
-    // Se a imageUrl começa com 'public/', remove essa parte
-    if (autor.imageUrl.startsWith('public/')) {
-      let url = '/' + autor.imageUrl.substring(7); // Remove 'public/' e adiciona '/'
-      
-      // Se não tem extensão, adiciona .png
-      if (!url.includes('.')) {
-        url += '.png';
-      }
-      
-      return url;
-    }
-    
-    // Se já é uma URL completa ou caminho absoluto, usa como está
-    return autor.imageUrl;
-  };
 
   return (
-    <div className={styles.cardWrapper}>
-      <Link href={`/autores/${autor.id}`} className={styles.card}>
-        {/* Background Pattern */}
-        <div className={styles.cardBackground}>
-          <div className={styles.geometricPattern}></div>
-          <div className={styles.gradientOverlay}></div>
-        </div>
+    <Link href={`/autores/${autor.id}`} className={styles.cardLink}>
+      <article className={styles.autorCard}>
+        <div className={styles.cardBackground}></div>
 
-        {/* Main Content Container */}
-        <div className={styles.contentContainer}>
-          {/* Image Section with Innovative Frame */}
-          <div className={styles.imageSection}>
-            <div className={styles.imageFrame}>
-              <img
-                src={getImageUrl(autor)}
-                alt={autor.nome}
-                className={styles.authorImage}
-                onError={(e) => {
-                  e.target.src = fallbackImage;
-                }}
-              />
-            </div>
-            
-            {/* Decorative Elements - REMOVED */}
-          </div>
-
-          {/* Text Content with Animation */}
-          <div className={styles.textContent}>
-            <div className={styles.nameContainer}>
-              <h3 className={styles.authorName}>{autor.nome}</h3>
-              <div className={styles.nameUnderline}></div>
-            </div>
-            
-            <div className={styles.metadata}>
-              <div className={styles.badge}>
-                <BookOpen size={14} />
-                <span>Explorar</span>
-              </div>
-            </div>
+        <div className={styles.imageWrapper}>
+          <div className={styles.imageFrame}>
+            <img
+              src={getImageUrl(autor)}
+              alt={autor.nome}
+              className={styles.autorImage}
+              onError={(e) => { e.target.src = fallbackImage; }}
+            />
           </div>
         </div>
-      </Link>
-    </div>
+
+        <div className={styles.cardContent}>
+          <h3 className={styles.autorNome}>{autor.nome}</h3>
+          <div className={styles.readMore}>
+            <span>Explorar biografia</span>
+            <div className={styles.arrow}>→</div>
+          </div>
+        </div>
+
+        <div className={styles.decorativeElements}>
+          <div className={styles.topQuote}>"</div>
+          <div className={styles.bottomQuote}>"</div>
+        </div>
+      </article>
+    </Link>
   );
 }
