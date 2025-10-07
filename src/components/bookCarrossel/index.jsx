@@ -47,6 +47,7 @@ export default function BookCarrossel({ books, authorName, favoritos = [], toggl
   // Toggle favorito do livro
   const toggleBookFavorite = (bookId, e) => {
     e.stopPropagation();
+    e.preventDefault();
     
     // Se tem função de toggle da prop, usa ela
     if (toggleFavorito) {

@@ -42,12 +42,20 @@ export default function AutoresPage() {
 
     // Filtro por pesquisa
     if (searchTerm) {
-      result = result.filter(
-        (autor) =>
-          autor.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          (autor.biography &&
-            autor.biography.toLowerCase().includes(searchTerm.toLowerCase()))
-      );
+      // Se apenas uma letra foi digitada, filtrar por inicial
+      if (searchTerm.length === 1) {
+        result = result.filter((autor) =>
+          autor.nome.toLowerCase().startsWith(searchTerm.toLowerCase())
+        );
+      } else {
+        // Busca normal por nome ou biografia
+        result = result.filter(
+          (autor) =>
+            autor.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            (autor.biography &&
+              autor.biography.toLowerCase().includes(searchTerm.toLowerCase()))
+        );
+      }
     }
 
     // Filtro por período histórico
