@@ -5,7 +5,7 @@ import styles from "./formContact.module.css";
 export default function FormContact() {
   return (
     <div className={styles.contactSection}>
-      <h3 className={styles.formTitle}>Entre em Contato</h3>
+      <h3 className={styles.formTitle}>ENTRE EM CONTATO</h3>
       <p className={styles.formSubtitle}>
         Tem alguma dúvida ou sugestão? Adoraria ouvir você!
       </p>

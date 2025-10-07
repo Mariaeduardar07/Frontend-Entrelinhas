@@ -1,0 +1,241 @@
+.socialSection {
+    text-align: center;
+}
+
+.socialTitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--cor-do-banner);
+    margin-bottom: 3rem;
+    text-align: center;
+    line-height: 1.1;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.socialTitle::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent 0%, var(--cor-do-banner) 50%, transparent 100%);
+    border-radius: 2px;
+}
+
+.socialLinks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.socialLink {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.8rem;
+    background: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(246, 244, 240, 0.95) 100%);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.08),
+        0 3px 16px rgba(163, 136, 123, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(163, 136, 123, 0.2);
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+    color: inherit;
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+}
+
+.socialLink::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.6s;
+}
+
+.socialLink:hover::before {
+    left: 100%;
+}
+
+.socialLink:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.15),
+        0 8px 30px rgba(163, 136, 123, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border-color: rgba(163, 136, 123, 0.4);
+}
+
+.socialIcon {
+    width: 60px;
+    height: 60px;
+    background: 
+        linear-gradient(135deg, var(--cor-3-detalhes) 0%, var(--cor-do-banner) 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 
+        0 6px 20px rgba(163, 136, 123, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.socialIcon::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: transform 0.6s;
+}
+
+.socialLink:hover .socialIcon::before {
+    transform: rotate(45deg) translate(50%, 50%);
+}
+
+.socialIcon svg {
+    width: 26px;
+    height: 26px;
+    color: white;
+    transition: all 0.3s ease;
+    z-index: 1;
+    position: relative;
+}
+
+.socialLink:hover .socialIcon {
+    transform: scale(1.05) rotate(-3deg);
+    box-shadow: 
+        0 12px 32px rgba(163, 136, 123, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.socialInfo {
+    flex: 1;
+    text-align: left;
+}
+
+.socialName {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--cor-do-banner);
+    margin-bottom: 0.4rem;
+    font-family: 'Cormorant Garamond', serif;
+    transition: all 0.3s ease;
+}
+
+.socialHandle {
+    display: block;
+    font-size: 1rem;
+    color: var(--cor-3);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.socialHandle::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cor-3-detalhes), var(--cor-do-banner));
+    transition: width 0.3s ease;
+    border-radius: 1px;
+}
+
+.socialLink:hover .socialHandle::after {
+    width: 100%;
+}
+
+.socialLink:hover .socialName {
+    color: var(--cor-3-detalhes);
+    transform: translateX(3px);
+}
+
+.socialLink:hover .socialHandle {
+    color: var(--cor-do-banner);
+    transform: translateX(3px);
+}
+
+/* Responsividade para Social Section */
+@media (max-width: 768px) {
+    .socialLinks {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        padding: 0 1rem;
+    }
+    
+    .socialLink {
+        padding: 1.5rem;
+        gap: 1.25rem;
+    }
+    
+    .socialIcon {
+        width: 54px;
+        height: 54px;
+    }
+    
+    .socialIcon svg {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .socialName {
+        font-size: 1.2rem;
+    }
+    
+    .socialHandle {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .socialLinks {
+        padding: 0 0.75rem;
+    }
+    
+    .socialLink {
+        padding: 1.25rem;
+        gap: 1rem;
+    }
+    
+    .socialIcon {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .socialIcon svg {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .socialName {
+        font-size: 1.1rem;
+    }
+    
+    .socialHandle {
+        font-size: 0.9rem;
+    }
+}

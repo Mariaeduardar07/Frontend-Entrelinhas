@@ -87,3 +87,84 @@
   background: linear-gradient(90deg, transparent 0%, var(--cor-do-banner) 50%, transparent 100%);
     border-radius: 2px;
 }
+
+/* Responsividade para Motivation */
+@media (max-width: 768px) {
+    .motivation {
+        padding: 60px 1rem;
+        margin: 0 -1rem;
+        width: calc(100% + 2rem);
+        margin-left: -1rem;
+    }
+    
+    .motivationGrid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+    
+    .motivationCard {
+        padding: 2rem;
+    }
+    
+    .projectGoals {
+        padding: 2rem;
+    }
+    
+    .goalsList {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .goalItem {
+        padding: 1.25rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .motivation {
+        padding: 50px 0;
+        margin: 0 -0.75rem;
+    }
+    
+    .motivationContent {
+        padding: 0 0.75rem;
+    }
+    
+    .motivationCard {
+        padding: 1.5rem;
+    }
+    
+    .cardIcon {
+        width: 56px;
+        height: 56px;
+    }
+    
+    .cardIcon svg {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .motivationCard h3 {
+        font-size: 1.3rem;
+    }
+    
+    .projectGoals {
+        padding: 1.5rem;
+    }
+    
+    .goalsTitle {
+        font-size: 1.5rem;
+    }
+    
+    .goalItem {
+        padding: 1rem;
+    }
+    
+    .goalIcon {
+        font-size: 1.25rem;
+    }
+}
