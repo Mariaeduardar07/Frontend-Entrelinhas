@@ -1,0 +1,188 @@
+.contactSection {
+    padding: 4rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.formTitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--cor-do-banner);
+    margin-bottom: 1rem;
+    text-align: center;
+    background: linear-gradient(135deg, var(--cor-do-banner) 0%, var(--cor-3-detalhes) 50%, #2c3838 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+}
+
+.formSubtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--cor-3);
+    text-align: center;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+.form {
+    background: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(246, 244, 240, 0.95) 100%);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 
+        0 12px 48px rgba(0, 0, 0, 0.08),
+        0 4px 24px rgba(163, 136, 123, 0.12);
+    border: 1px solid rgba(163, 136, 123, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.inputGroup {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.inputField {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--cor-do-banner);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.input,
+.textarea {
+    padding: 1rem 1.25rem;
+    border: 1px solid rgba(163, 136, 123, 0.3);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--cor-3);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.input:focus,
+.textarea:focus {
+    outline: none;
+    border-color: var(--cor-3-detalhes);
+    box-shadow: 
+        0 0 0 3px rgba(4, 50, 34, 0.1),
+        0 4px 12px rgba(163, 136, 123, 0.15);
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-1px);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+    color: rgba(85, 104, 119, 0.6);
+    font-style: italic;
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 120px;
+    font-family: inherit;
+    line-height: 1.5;
+}
+
+.submitButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.25rem 2.5rem;
+    background: 
+        linear-gradient(135deg, var(--cor-3-detalhes) 0%, var(--cor-do-banner) 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: 'Cormorant Garamond', serif;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 
+        0 6px 24px rgba(4, 50, 34, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    align-self: center;
+    min-width: 200px;
+}
+
+.submitButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.submitButton:hover::before {
+    left: 100%;
+}
+
+.submitButton:hover {
+    background: 
+        linear-gradient(135deg, var(--cor-do-banner) 0%, var(--cor-3-detalhes) 100%);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 
+        0 12px 36px rgba(4, 50, 34, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.submitButton:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.submitButton svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.submitButton:hover svg {
+    transform: translateX(3px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contactSection {
+        padding: 3rem 1rem;
+    }
+    
+    .form {
+        padding: 2rem 1.5rem;
+    }
+    
+    .inputGroup {
+        grid-template-columns: 1fr;
+    }
+    
+    .formTitle {
+        font-size: clamp(1.8rem, 6vw, 2.2rem);
+    }
+    
+    .formSubtitle {
+        font-size: 1rem;
+    }
+}
