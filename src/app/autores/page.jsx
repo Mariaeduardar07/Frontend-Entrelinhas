@@ -3,12 +3,12 @@
 import { useState, useEffect } from "react";
 import { Spin } from "antd";
 import { Search, Filter, Calendar, Users } from "lucide-react";
-import Link from "next/link";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./autores.module.css";
 import AuthorCard from "@/components/authorCard";
+import Banner from "@/components/banner";
 
 export default function AutoresPage() {
   const [autores, setAutores] = useState([]);
@@ -42,35 +42,52 @@ export default function AutoresPage() {
 
     // Filtro por pesquisa
     if (searchTerm) {
-      result = result.filter(autor =>
-        autor.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (autor.biography && autor.biography.toLowerCase().includes(searchTerm.toLowerCase()))
+      result = result.filter(
+        (autor) =>
+          autor.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          (autor.biography &&
+            autor.biography.toLowerCase().includes(searchTerm.toLowerCase()))
       );
     }
 
     // Filtro por período histórico
     if (selectedPeriod) {
-      result = result.filter(autor =>
-        autor.historical_period && autor.historical_period.includes(selectedPeriod)
+      result = result.filter(
+        (autor) =>
+          autor.historical_period &&
+          autor.historical_period.includes(selectedPeriod)
       );
     }
 
     // Filtro por categoria (baseado no nome ou características)
     if (selectedCategory) {
-      result = result.filter(autor => {
+      result = result.filter((autor) => {
         switch (selectedCategory) {
           case "romanticismo":
-            return autor.historical_period && autor.historical_period.toLowerCase().includes("romantic");
+            return (
+              autor.historical_period &&
+              autor.historical_period.toLowerCase().includes("romantic")
+            );
           case "realismo":
-            return autor.historical_period && autor.historical_period.toLowerCase().includes("realis");
+            return (
+              autor.historical_period &&
+              autor.historical_period.toLowerCase().includes("realis")
+            );
           case "modernismo":
-            return autor.historical_period && autor.historical_period.toLowerCase().includes("modernis");
+            return (
+              autor.historical_period &&
+              autor.historical_period.toLowerCase().includes("modernis")
+            );
           case "pre-modernismo":
-            return autor.historical_period && autor.historical_period.toLowerCase().includes("pré-modernis");
+            return (
+              autor.historical_period &&
+              autor.historical_period.toLowerCase().includes("pré-modernis")
+            );
           case "contemporaneo":
-            return autor.historical_period && (
-              autor.historical_period.toLowerCase().includes("contemporân") ||
-              autor.historical_period.toLowerCase().includes("atual")
+            return (
+              autor.historical_period &&
+              (autor.historical_period.toLowerCase().includes("contemporân") ||
+                autor.historical_period.toLowerCase().includes("atual"))
             );
           default:
             return true;
@@ -84,8 +101,8 @@ export default function AutoresPage() {
   // Obter períodos únicos
   const getUniquePeriods = () => {
     const periods = autores
-      .map(autor => autor.historical_period)
-      .filter(period => period)
+      .map((autor) => autor.historical_period)
+      .filter((period) => period)
       .filter((period, index, arr) => arr.indexOf(period) === index);
     return periods;
   };
@@ -96,38 +113,32 @@ export default function AutoresPage() {
     setSelectedCategory("");
   };
 
-
-
   // Processa a imageUrl do backend
   const getImageUrl = (autor) => {
-    if (!autor.imageUrl) return '/image/imgBanner.png';
-    
+    if (!autor.imageUrl) return "/image/imgBanner.png";
+
     // Se a imageUrl começa com 'public/', remove essa parte
-    if (autor.imageUrl.startsWith('public/')) {
-      let url = '/' + autor.imageUrl.substring(7); // Remove 'public/' e adiciona '/'
-      
+    if (autor.imageUrl.startsWith("public/")) {
+      let url = "/" + autor.imageUrl.substring(7); // Remove 'public/' e adiciona '/'
+
       // Se não tem extensão, adiciona .png
-      if (!url.includes('.')) {
-        url += '.png';
+      if (!url.includes(".")) {
+        url += ".png";
       }
-      
+
       return url;
     }
-    
+
     // Se já é uma URL completa ou caminho absoluto, usa como está
     return autor.imageUrl;
   };
-  
+
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <h1 className={styles.title}>Descubra o Mundo dos Autores</h1>
-        <p className={styles.subtitle}>
-          Explore nossa coleção completa de autores com informações detalhadas, 
-          biografias e curiosidades sobre cada escritor.
-        </p>
-      </div>
-
+      <Banner
+        title="Descubra o Mundo dos Autores"
+        subtitle="Explore nossa coleção completa de autores com informações detalhadas, biografias e curiosidades sobre cada escritor."
+      />
       {loading ? (
         <div className={styles.loadingWrapper}>
           <Spin size="large" />
@@ -206,7 +217,11 @@ export default function AutoresPage() {
           <div className={styles.cardsContainer}>
             {filteredAutores.length > 0 ? (
               filteredAutores.map((autor) => (
-                <AuthorCard key={autor.id} autor={autor} getImageUrl={getImageUrl} />
+                <AuthorCard
+                  key={autor.id}
+                  autor={autor}
+                  getImageUrl={getImageUrl}
+                />
               ))
             ) : (
               <div className={styles.noResults}>
@@ -236,7 +251,7 @@ export default function AutoresPage() {
         limit={3}
         style={{ zIndex: 9999 }}
         preventDuplicates={true}
-  /* use default transition */
+        /* use default transition */
       />
     </div>
   );

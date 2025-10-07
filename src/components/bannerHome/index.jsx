@@ -24,15 +24,17 @@ export default function Banner({
         </div> 
       </div>
       <div className={styles.imageContainer}>
-        <Image
-          src={image}
-          alt={imageAlt}
-          width={700}
-          height={500}
-          className={styles.image}
-          priority
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
+        {image && (
+          <Image
+            src={image}
+            alt={imageAlt || "Imagem do banner"}
+            width={700}
+            height={500}
+            className={styles.image}
+            priority
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        )}
       </div>
     </section>
   );
