@@ -105,6 +105,9 @@
   text-decoration: none;
   cursor: pointer;
   letter-spacing: 0.5px;
+  pointer-events: auto;
+  z-index: 1000;
+  position: relative;
 }
 
 .button:hover {

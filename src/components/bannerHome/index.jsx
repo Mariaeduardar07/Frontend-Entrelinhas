@@ -1,15 +1,16 @@
+"use client";
+
 import styles from "./bannerHome.module.css";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Banner({
+export default function BannerHome({
   title,
   description,
   button,
   image,
-  imageAlt,
-  href = "/autores"
+  imageAlt
 }) {
   return (
     <section className={styles.section}>
@@ -17,10 +18,23 @@ export default function Banner({
         <h1 className={styles.title}>{title}</h1>
         <p className={styles.description}>{description}</p>
         <div className={styles.buttonContainer}>
-          <Link href={href} className={styles.button}>
+          <button 
+            onClick={() => {
+              console.log('Botão clicado! Navegando para:', '/autores');
+              try {
+                window.location.href = '/autores';
+                console.log('Navegação executada com sucesso');
+              } catch (error) {
+                console.error('Erro na navegação:', error);
+                window.location = '/autores';
+              }
+            }}
+            className={styles.button}
+            type="button"
+          >
             {button} 
             <ChevronRight size={20} strokeWidth={2.5} />
-          </Link>
+          </button>
         </div> 
       </div>
       <div className={styles.imageContainer}>
