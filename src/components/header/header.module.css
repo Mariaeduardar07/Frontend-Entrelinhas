@@ -8,17 +8,13 @@
 
 .header {
   background: #f6f4f0f2;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 2px 12px rgba(44, 56, 56, 0.1);
   border-bottom: 1px solid rgba(44, 56, 56, 0.1);
-  padding: 0.5rem 0;
+  padding: 1rem 0;
   position: sticky;
   top: 0;
   width: 100%;
   z-index: 100;
-  margin-bottom: 2rem;
-  transition: all 0.3s ease;
 }
 
 .headerContent {

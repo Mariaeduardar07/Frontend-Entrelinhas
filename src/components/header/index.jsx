@@ -66,7 +66,7 @@ export default function Header() {
               </Link>
             </li>
             <li className={styles.navItem}>
-              <Link href="/sobre" className={`${styles.navLink} ${pathname === '/sobre' ? styles.active : ''}`}>
+              <Link href="/sobreMim" className={`${styles.navLink} ${pathname === '/sobre' ? styles.active : ''}`}>
                 Sobre Mim
               </Link>
             </li>
