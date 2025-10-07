@@ -16,7 +16,7 @@ export default function AutoresPage() {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedPeriod, setSelectedPeriod] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
+
 
   const fetchAutores = async () => {
     try {
@@ -59,44 +59,8 @@ export default function AutoresPage() {
       );
     }
 
-    // Filtro por categoria (baseado no nome ou características)
-    if (selectedCategory) {
-      result = result.filter((autor) => {
-        switch (selectedCategory) {
-          case "romanticismo":
-            return (
-              autor.historical_period &&
-              autor.historical_period.toLowerCase().includes("romantic")
-            );
-          case "realismo":
-            return (
-              autor.historical_period &&
-              autor.historical_period.toLowerCase().includes("realis")
-            );
-          case "modernismo":
-            return (
-              autor.historical_period &&
-              autor.historical_period.toLowerCase().includes("modernis")
-            );
-          case "pre-modernismo":
-            return (
-              autor.historical_period &&
-              autor.historical_period.toLowerCase().includes("pré-modernis")
-            );
-          case "contemporaneo":
-            return (
-              autor.historical_period &&
-              (autor.historical_period.toLowerCase().includes("contemporân") ||
-                autor.historical_period.toLowerCase().includes("atual"))
-            );
-          default:
-            return true;
-        }
-      });
-    }
-
     setFilteredAutores(result);
-  }, [autores, searchTerm, selectedPeriod, selectedCategory]);
+  }, [autores, searchTerm, selectedPeriod]);
 
   // Obter períodos únicos
   const getUniquePeriods = () => {
@@ -110,7 +74,7 @@ export default function AutoresPage() {
   const handleClearFilters = () => {
     setSearchTerm("");
     setSelectedPeriod("");
-    setSelectedCategory("");
+
   };
 
   // Processa a imageUrl do backend
@@ -163,22 +127,7 @@ export default function AutoresPage() {
 
               {/* Filtros */}
               <div className={styles.filtersRow}>
-                {/* Filtro por Categoria */}
-                <div className={styles.filterGroup}>
-                  <Filter className={styles.filterIcon} size={16} />
-                  <select
-                    value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
-                    className={styles.filterSelect}
-                  >
-                    <option value="">Todas as Categorias</option>
-                    <option value="romanticismo">Romantismo</option>
-                    <option value="realismo">Realismo</option>
-                    <option value="pre-modernismo">Pré-Modernismo</option>
-                    <option value="modernismo">Modernismo</option>
-                    <option value="contemporaneo">Contemporâneo</option>
-                  </select>
-                </div>
+
 
                 {/* Filtro por Período */}
                 <div className={styles.filterGroup}>
