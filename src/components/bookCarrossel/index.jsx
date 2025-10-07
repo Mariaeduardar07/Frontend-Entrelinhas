@@ -55,17 +55,19 @@ export default function BookCarrossel({ books, authorName, favoritos = [], toggl
     }
     
     // Caso contrário, usa a implementação local
-    const favoriteBooks = JSON.parse(localStorage.getItem('livrosFavoritos') || '[]');
-    const isFavorite = favoriteBooks.includes(bookId);
-    
-    if (isFavorite) {
-      const newFavorites = favoriteBooks.filter(id => id !== bookId);
-      localStorage.setItem('livrosFavoritos', JSON.stringify(newFavorites));
-      toast.success("Livro removido dos favoritos!");
-    } else {
-      const newFavorites = [...favoriteBooks, bookId];
-      localStorage.setItem('livrosFavoritos', JSON.stringify(newFavorites));
-      toast.success("Livro adicionado aos favoritos!");
+    if (typeof window !== 'undefined') {
+      const favoriteBooks = JSON.parse(localStorage.getItem('livrosFavoritos') || '[]');
+      const isFavorite = favoriteBooks.includes(bookId);
+      
+      if (isFavorite) {
+        const newFavorites = favoriteBooks.filter(id => id !== bookId);
+        localStorage.setItem('livrosFavoritos', JSON.stringify(newFavorites));
+        toast.success("Livro removido dos favoritos!");
+      } else {
+        const newFavorites = [...favoriteBooks, bookId];
+        localStorage.setItem('livrosFavoritos', JSON.stringify(newFavorites));
+        toast.success("Livro adicionado aos favoritos!");
+      }
     }
   };
 
@@ -92,8 +94,11 @@ export default function BookCarrossel({ books, authorName, favoritos = [], toggl
     }
     
     // Caso contrário, verifica no localStorage
-    const favoriteBooks = JSON.parse(localStorage.getItem('livrosFavoritos') || '[]');
-    return favoriteBooks.includes(bookId);
+    if (typeof window !== 'undefined') {
+      const favoriteBooks = JSON.parse(localStorage.getItem('livrosFavoritos') || '[]');
+      return favoriteBooks.includes(bookId);
+    }
+    return false;
   };
 
   if (!books || books.length === 0) {

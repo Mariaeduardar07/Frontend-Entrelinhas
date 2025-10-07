@@ -15,7 +15,6 @@ export default function DetalhesAutor({ params }) {
   const [autor, setAutor] = useState(null);
   const [livros, setLivros] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [imageError, setImageError] = useState(false);
   const [isFavorito, setIsFavorito] = useState(false);
   const [favoritos, setFavoritos] = useState([]);
 
@@ -44,12 +43,14 @@ export default function DetalhesAutor({ params }) {
         setLivros(livrosDoAutor);
         
         // Verifica se o autor está nos favoritos
-        const favoritosIds = JSON.parse(localStorage.getItem('autoresFavoritos') || '[]');
-        setIsFavorito(favoritosIds.includes(parseInt(resolvedParams.id)));
-        
-        // Carrega favoritos de livros
-        const livrosFavoritos = JSON.parse(localStorage.getItem('livrosFavoritos') || '[]');
-        setFavoritos(livrosFavoritos);
+        if (typeof window !== 'undefined') {
+          const favoritosIds = JSON.parse(localStorage.getItem('autoresFavoritos') || '[]');
+          setIsFavorito(favoritosIds.includes(parseInt(resolvedParams.id)));
+          
+          // Carrega favoritos de livros
+          const livrosFavoritos = JSON.parse(localStorage.getItem('livrosFavoritos') || '[]');
+          setFavoritos(livrosFavoritos);
+        }
         
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
@@ -85,40 +86,44 @@ export default function DetalhesAutor({ params }) {
 
   // Alterna favorito do autor
   const toggleFavorito = () => {
-    const favoritosIds = JSON.parse(localStorage.getItem('autoresFavoritos') || '[]');
-    const autorId = parseInt(resolvedParams.id);
-    
-    if (isFavorito) {
-      // Remove dos favoritos
-      const novosIds = favoritosIds.filter(id => id !== autorId);
-      localStorage.setItem('autoresFavoritos', JSON.stringify(novosIds));
-      setIsFavorito(false);
-      toast.success("Autor removido dos favoritos!");
-    } else {
-      // Adiciona aos favoritos
-      const novosIds = [...favoritosIds, autorId];
-      localStorage.setItem('autoresFavoritos', JSON.stringify(novosIds));
-      setIsFavorito(true);
-      toast.success("Autor adicionado aos favoritos!");
+    if (typeof window !== 'undefined') {
+      const favoritosIds = JSON.parse(localStorage.getItem('autoresFavoritos') || '[]');
+      const autorId = parseInt(resolvedParams.id);
+      
+      if (isFavorito) {
+        // Remove dos favoritos
+        const novosIds = favoritosIds.filter(id => id !== autorId);
+        localStorage.setItem('autoresFavoritos', JSON.stringify(novosIds));
+        setIsFavorito(false);
+        toast.success("Autor removido dos favoritos!");
+      } else {
+        // Adiciona aos favoritos
+        const novosIds = [...favoritosIds, autorId];
+        localStorage.setItem('autoresFavoritos', JSON.stringify(novosIds));
+        setIsFavorito(true);
+        toast.success("Autor adicionado aos favoritos!");
+      }
     }
   };
 
   // Alterna favorito de livro
   const toggleFavoritoLivro = (livroId) => {
-    const favoritosIds = JSON.parse(localStorage.getItem('livrosFavoritos') || '[]');
-    
-    if (favoritos.includes(livroId)) {
-      // Remove dos favoritos
-      const novosIds = favoritosIds.filter(id => id !== livroId);
-      localStorage.setItem('livrosFavoritos', JSON.stringify(novosIds));
-      setFavoritos(novosIds);
-      toast.success("Livro removido dos favoritos!");
-    } else {
-      // Adiciona aos favoritos
-      const novosIds = [...favoritosIds, livroId];
-      localStorage.setItem('livrosFavoritos', JSON.stringify(novosIds));
-      setFavoritos(novosIds);
-      toast.success("Livro adicionado aos favoritos!");
+    if (typeof window !== 'undefined') {
+      const favoritosIds = JSON.parse(localStorage.getItem('livrosFavoritos') || '[]');
+      
+      if (favoritos.includes(livroId)) {
+        // Remove dos favoritos
+        const novosIds = favoritosIds.filter(id => id !== livroId);
+        localStorage.setItem('livrosFavoritos', JSON.stringify(novosIds));
+        setFavoritos(novosIds);
+        toast.success("Livro removido dos favoritos!");
+      } else {
+        // Adiciona aos favoritos
+        const novosIds = [...favoritosIds, livroId];
+        localStorage.setItem('livrosFavoritos', JSON.stringify(novosIds));
+        setFavoritos(novosIds);
+        toast.success("Livro adicionado aos favoritos!");
+      }
     }
   };
 

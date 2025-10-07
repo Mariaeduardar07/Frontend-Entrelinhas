@@ -78,13 +78,13 @@
 .ctaButtonPrimary {
     background: var(--cor-3-detalhes);
     color: white;
-    box-shadow: 0 6px 25px rgba(163, 136, 123, 0.3);
+    box-shadow: 0 6px 25px rgba(4, 50, 34, 0.3);
 }
 
 .ctaButtonPrimary:hover {
     background: var(--cor-do-banner);
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 35px rgba(163, 136, 123, 0.4);
+    box-shadow: 0 10px 35px rgba(4, 50, 34, 0.4);
 }
 
 .ctaButtonSecondary {
@@ -98,7 +98,7 @@
     background: var(--cor-3-detalhes);
     color: white;
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 30px rgba(163, 136, 123, 0.3);
+    box-shadow: 0 8px 30px rgba(4, 50, 34, 0.3);
 }
 
 @media (max-width: 768px) {

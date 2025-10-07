@@ -1,6 +1,7 @@
 .container {
+  min-height: 100vh;
   background: 
-    radial-gradient(circle at 25% 25%, rgba(163, 136, 123, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 25% 25%, rgba(4, 50, 34, 0.05) 0%, transparent 50%),
     radial-gradient(circle at 75% 75%, rgba(85, 104, 119, 0.05) 0%, transparent 50%),
     linear-gradient(135deg, var(--cor-do-fundo) 0%, #f2ede6 100%);
   padding: 0;
@@ -8,67 +9,9 @@
   overflow-x: hidden;
 }
 
-.header {
-  position: relative;
-  text-align: center;
-  padding: 4rem 2rem 2rem;
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(246, 244, 240, 0.8) 100%);
-  border-radius: 0;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  margin-bottom: 2rem;
-  overflow: hidden;
-}
 
-.header::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 30% 20%, rgba(163, 136, 123, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 70% 80%, rgba(85, 104, 119, 0.08) 0%, transparent 50%);
-  z-index: 1;
-}
 
-.header > * {
-  position: relative;
-  z-index: 2;
-}
 
-.headerIcon {
-  color: #e74c3c;
-  margin-bottom: 1rem;
-}
-
-.title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 700;
-  color: var(--cor-do-banner);
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, var(--cor-do-banner) 0%, var(--cor-3-detalhes) 50%, #2c3838 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1.1;
-  position: relative;
-  display: inline-block;
-}
-
-.subtitle {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.3rem;
-  color: var(--cor-do-banner);
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
-  opacity: 0.85;
-  font-weight: 400;
-}
 
 .loading {
   display: flex;
@@ -116,7 +59,7 @@
   gap: 0.5rem;
   padding: 1rem 2rem;
   background: rgba(255, 255, 255, 0.7);
-  border: 2px solid rgba(163, 136, 123, 0.2);
+  border: 2px solid rgba(4, 50, 34, 0.2);
   border-radius: 0;
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.1rem;
@@ -129,7 +72,7 @@
 
 .tab:hover {
   background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(163, 136, 123, 0.4);
+  border-color: rgba(4, 50, 34, 0.4);
   transform: translateY(-2px);
 }
 
@@ -158,22 +101,22 @@
     linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(246, 244, 240, 0.95) 100%);
   border-radius: 0;
   padding: 1.5rem;
-  border: 1px solid rgba(163, 136, 123, 0.15);
+  border: 1px solid rgba(4, 50, 34, 0.15);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
   backdrop-filter: blur(15px);
   box-shadow: 
     0 8px 25px rgba(45, 48, 71, 0.08),
-    0 3px 10px rgba(163, 136, 123, 0.05);
+    0 3px 10px rgba(4, 50, 34, 0.05);
   width: 100%;
 }
 
 .card:hover {
   transform: translateY(-8px) scale(1.02);
-  border-color: rgba(163, 136, 123, 0.3);
+  border-color: rgba(4, 50, 34, 0.3);
   box-shadow: 
     0 15px 40px rgba(45, 48, 71, 0.12),
-    0 6px 20px rgba(163, 136, 123, 0.08);
+    0 6px 20px rgba(4, 50, 34, 0.08);
 }
 
 .removeButton {
@@ -221,13 +164,13 @@
   height: 110px;
   border-radius: 0;
   object-fit: cover;
-  border: 3px solid rgba(163, 136, 123, 0.3);
+  border: 3px solid rgba(4, 50, 34, 0.3);
   transition: all 0.3s ease;
 }
 
 .card:hover .image {
   transform: scale(1.05);
-  border-color: rgba(163, 136, 123, 0.5);
+  border-color: rgba(4, 50, 34, 0.5);
 }
 
 .cardContent {
@@ -271,7 +214,7 @@
   border-radius: 0;
   padding: 3rem;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(163, 136, 123, 0.1);
+  border: 1px solid rgba(4, 50, 34, 0.1);
 }
 
 .emptyIcon {
@@ -313,7 +256,7 @@
 .exploreButton:hover {
   background: var(--cor-do-banner);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(163, 136, 123, 0.4);
+  box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
 }
 
 .exploreBookButton {
@@ -328,7 +271,7 @@
   font-weight: 500;
   font-size: 0.85rem;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(163, 136, 123, 0.2);
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.2);
   margin-top: 0.75rem;
   width: fit-content;
 }
@@ -336,7 +279,7 @@
 .exploreBookButton:hover {
   background: var(--cor-do-banner);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(163, 136, 123, 0.3);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
 }
 
 /* Responsividade */

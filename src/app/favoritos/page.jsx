@@ -111,12 +111,10 @@ export default function FavoritosPage() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <Banner
-          title="Meus Favoritos"
-          subtitle=" Seus autores e livros salvos para fácil acesso"
-        />
-      </div>
+      <Banner
+        title="Meus Favoritos"
+        subtitle="Seus autores e livros salvos para fácil acesso"
+      />
 
       {/* Tabs para alternar entre autores e livros */}
       <div className={styles.tabs}>

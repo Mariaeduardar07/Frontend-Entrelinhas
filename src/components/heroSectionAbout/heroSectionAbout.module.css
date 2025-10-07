@@ -114,9 +114,9 @@
     transform: translateY(-8px) scale(1.02);
     box-shadow: 
         0 20px 60px rgba(0, 0, 0, 0.12),
-        0 8px 30px rgba(163, 136, 123, 0.18),
+        0 8px 30px rgba(4, 50, 34, 0.18),
         inset 0 1px 0 rgba(255, 255, 255, 0.9);
-    border-color: rgba(163, 136, 123, 0.35);
+    border-color: rgba(4, 50, 34, 0.35);
 }
 
 .statNumber {
@@ -195,7 +195,7 @@
     transform: scale(1.02) rotate(1deg);
     box-shadow: 
         0 25px 70px rgba(0, 0, 0, 0.2),
-        0 10px 40px rgba(163, 136, 123, 0.3);
+        0 10px 40px rgba(4, 50, 34, 0.3);
     border-color: rgba(255, 255, 255, 0.95);
 }
 

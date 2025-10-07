@@ -39,19 +39,7 @@ export default function DetalhesLivroPage({ params }) {
       const autorResponse = await axios.get(`http://localhost:5000/author/${livroEncontrado.authorId}`);
       const autorEncontrado = autorResponse.data;
 
-      // Processar personagens se vier como string
-      if (livroEncontrado.characters && typeof livroEncontrado.characters === 'string') {
-        try {
-          // Tenta fazer parse se for JSON
-          livroEncontrado.characters = JSON.parse(livroEncontrado.characters);
-        } catch {
-          // Se não for JSON, trata como string separada por vírgulas
-          livroEncontrado.characters = livroEncontrado.characters
-            .split(',')
-            .map(char => char.trim())
-            .filter(char => char.length > 0);
-        }
-      }
+      // Characters já vem como string do backend
 
       setLivro(livroEncontrado);
       setAutor(autorEncontrado);
@@ -64,24 +52,28 @@ export default function DetalhesLivroPage({ params }) {
   };
 
   const checkFavoriteStatus = (livroId) => {
-    const livrosFavoritos = JSON.parse(localStorage.getItem('livrosFavoritos') || '[]');
-    setIsFavorito(livrosFavoritos.includes(parseInt(livroId)));
+    if (typeof window !== 'undefined') {
+      const livrosFavoritos = JSON.parse(localStorage.getItem('livrosFavoritos') || '[]');
+      setIsFavorito(livrosFavoritos.includes(parseInt(livroId)));
+    }
   };
 
   const toggleFavorito = () => {
-    const livrosFavoritos = JSON.parse(localStorage.getItem('livrosFavoritos') || '[]');
-    const livroId = parseInt(resolvedParams.id);
-    
-    if (isFavorito) {
-      const novosFavoritos = livrosFavoritos.filter(id => id !== livroId);
-      localStorage.setItem('livrosFavoritos', JSON.stringify(novosFavoritos));
-      setIsFavorito(false);
-      toast.success("Livro removido dos favoritos!");
-    } else {
-      const novosFavoritos = [...livrosFavoritos, livroId];
-      localStorage.setItem('livrosFavoritos', JSON.stringify(novosFavoritos));
-      setIsFavorito(true);
-      toast.success("Livro adicionado aos favoritos!");
+    if (typeof window !== 'undefined') {
+      const livrosFavoritos = JSON.parse(localStorage.getItem('livrosFavoritos') || '[]');
+      const livroId = parseInt(resolvedParams.id);
+      
+      if (isFavorito) {
+        const novosFavoritos = livrosFavoritos.filter(id => id !== livroId);
+        localStorage.setItem('livrosFavoritos', JSON.stringify(novosFavoritos));
+        setIsFavorito(false);
+        toast.success("Livro removido dos favoritos!");
+      } else {
+        const novosFavoritos = [...livrosFavoritos, livroId];
+        localStorage.setItem('livrosFavoritos', JSON.stringify(novosFavoritos));
+        setIsFavorito(true);
+        toast.success("Livro adicionado aos favoritos!");
+      }
     }
   };
 
@@ -136,106 +128,66 @@ export default function DetalhesLivroPage({ params }) {
           </Link>
         )}
 
-        <div className={styles.detailsCard}>
-          <div className={styles.imageSection}>
-            <img
-              src={getImageUrl(livro)}
-              alt={livro.nome || livro.title}
-              className={styles.image}
-              onError={(e) => {
-                e.target.src = '/image/imgBanner.png';
-              }}
-            />
-          </div>
+        <div className={styles.bookLayout}>
+          {/* Seção principal com imagem e informações principais */}
+          <div className={styles.mainSection}>
+            <div className={styles.bookImageContainer}>
+              <img
+                src={getImageUrl(livro)}
+                alt={livro.title}
+                className={styles.bookImage}
+                onError={(e) => {
+                  e.target.src = '/image/imgBanner.png';
+                }}
+              />
+              <div className={styles.tapToEnlarge}>
+                Tap to enlarge
+              </div>
+            </div>
+            
+            <div className={styles.bookInfo}>
+              <div className={styles.titleSection}>
+                <h1 className={styles.bookTitle}>{livro.title}</h1>
+                <div className={styles.authorInfo}>
+                  <span className={styles.byText}>by</span>
+                  {autor && (
+                    <Link href={`/autores/${autor.id}`} className={styles.authorName}>
+                      {autor.nome}
+                    </Link>
+                  )}
+                </div>
+              </div>
 
-          <div className={styles.titleSection}>
-            <div className={styles.titleWithFavorite}>
-              <h1 className={styles.title}>{livro.nome || livro.title}</h1>
-              <button 
-                className={`${styles.favoriteButton} ${isFavorito ? styles.favorited : ''}`}
-                onClick={toggleFavorito}
-                title={isFavorito ? "Remover dos favoritos" : "Adicionar aos favoritos"}
-              >
-                <Heart size={24} fill={isFavorito ? "currentColor" : "none"} />
-              </button>
+              {livro.summary && (
+                <div className={styles.description}>
+                  <p>{livro.summary}</p>
+                </div>
+              )}
             </div>
           </div>
 
-          <div className={styles.infoSection}>
-            <div className={styles.detailsGrid}>
-              {autor && (
-                <div className={styles.detailItem}>
-                  <span className={styles.label}>Autor</span>
-                  <Link href={`/autores/${autor.id}`} className={styles.authorLink}>
-                    <User size={18} />
-                    {autor.nome}
-                  </Link>
-                </div>
-              )}
-
-              {(livro.description || livro.summary) && (
-                <div className={styles.detailItem}>
-                  <span className={styles.label}>Sobre o Livro</span>
-                  <p className={styles.value}>{livro.description || livro.summary}</p>
-                </div>
-              )}
-
-              {(livro.year_publication || livro.publicationDate) && (
+          {/* Sidebar com detalhes técnicos */}
+          <div className={styles.sidebar}>
+            <div className={styles.detailsCard}>
+              {livro.year_publication && (
                 <div className={styles.detailItem}>
                   <span className={styles.label}>Ano de Publicação</span>
-                  <div className={styles.value}>
-                    <Calendar size={18} />
-                    {livro.year_publication || new Date(livro.publicationDate).getFullYear()}
-                  </div>
+                  <span className={styles.value}>{livro.year_publication}</span>
                 </div>
               )}
 
               {livro.historical_period && (
                 <div className={styles.detailItem}>
                   <span className={styles.label}>Período Histórico</span>
-                  <p className={styles.value}>{livro.historical_period}</p>
+                  <span className={styles.value}>{livro.historical_period}</span>
                 </div>
               )}
 
-              {livro.genre && (
+              {livro.characters && (
                 <div className={styles.detailItem}>
-                  <span className={styles.label}>Gênero</span>
-                  <p className={styles.value}>{livro.genre}</p>
-                </div>
-              )}
-
-              {livro.pages && (
-                <div className={styles.detailItem}>
-                  <span className={styles.label}>Páginas</span>
-                  <div className={styles.value}>
-                    <BookOpen size={18} />
-                    {livro.pages} páginas
-                  </div>
-                </div>
-              )}
-
-              {livro.isbn && (
-                <div className={styles.detailItem}>
-                  <span className={styles.label}>ISBN</span>
-                  <p className={styles.value}>{livro.isbn}</p>
-                </div>
-              )}
-
-              {livro.characters && Array.isArray(livro.characters) && livro.characters.length > 0 && (
-                <div className={styles.detailItem}>
-                  <span className={styles.label}>Personagens Principais</span>
+                  <span className={styles.label}>Personagens</span>
                   <div className={styles.charactersList}>
-                    {livro.characters.map((character, index) => (
-                      <div key={index} className={styles.characterItem}>
-                        <User size={16} />
-                        <span>{typeof character === 'string' ? character : character.name}</span>
-                        {typeof character === 'object' && character.description && (
-                          <p className={styles.characterDescription}>
-                            {character.description}
-                          </p>
-                        )}
-                      </div>
-                    ))}
+                    <span className={styles.characterTag}>{livro.characters}</span>
                   </div>
                 </div>
               )}
@@ -243,17 +195,23 @@ export default function DetalhesLivroPage({ params }) {
               {livro.curiosities && (
                 <div className={styles.detailItem}>
                   <span className={styles.label}>Curiosidades</span>
-                  <p className={styles.value}>{livro.curiosities}</p>
+                  <span className={styles.value}>{livro.curiosities}</span>
                 </div>
               )}
-            </div>
-
-            <div className={styles.cardMeta}>
-              <div className={styles.badge}>
-                <BookOpen size={16} />
-                Livro
+              
+              <div className={styles.favoriteSection}>
+                <button 
+                  className={`${styles.favoriteButton} ${isFavorito ? styles.favorited : ''}`}
+                  onClick={toggleFavorito}
+                  title={isFavorito ? "Remover dos favoritos" : "Adicionar aos favoritos"}
+                >
+                  <Heart size={20} fill={isFavorito ? "currentColor" : "none"} />
+                  {isFavorito ? "Nos favoritos" : "Adicionar favorito"}
+                </button>
               </div>
             </div>
+
+
           </div>
         </div>
 
