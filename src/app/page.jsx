@@ -5,6 +5,7 @@ import { BookOpen, Users, Heart } from "lucide-react";
 import Link from "next/link";
 import styles from "./page.module.css";
 import Banner from "@/components/bannerHome";
+import Objectives from "@/components/objectives";
 
 export default function Home() {
   const [stats, setStats] = useState({
@@ -22,6 +23,8 @@ export default function Home() {
         image="/image/imgBanner.png"
         imageAlt="Livro aberto"
       />
+
+      <Objectives />
     </div>
   );
 }
