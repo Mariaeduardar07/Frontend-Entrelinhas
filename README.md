@@ -28,14 +28,14 @@ O **Entrelinhas** é uma aplicação front-end moderna desenvolvida com Next.js,
 Antes de começar, certifique-se de ter instalado em sua máquina:
 - [Node.js](https://nodejs.org/) (versão 18 ou superior)
 - [Git](https://git-scm.com/)
-- [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)
+- [npm](https://www.npmjs.com/)
 
 ### 📦 Instalação
 
 1. **Clone o repositório**
 
 ```bash
-git clone https://github.com/Mariaeduardar07/FrontendEntrelinhas.git
+git clone https://github.com/Mariaeduardar07/Frontend-Entrelinhas.git
 ```
 
 2. **Acesse a pasta do projeto**
