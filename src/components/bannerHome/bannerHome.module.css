@@ -1,0 +1,192 @@
+.section {
+  display: flex;
+  width: 100%;
+  min-height: 360px;
+  margin: 2rem 0;
+  padding: 0;
+  align-items: stretch;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    0 4px 16px rgba(163, 136, 123, 0.2);
+  overflow: hidden;
+  border: 1px solid rgba(163, 136, 123, 0.2);
+}
+
+.content {
+  width: 50%;
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: var(--cor-1);
+  background: 
+    linear-gradient(135deg, var(--cor-do-banner) 0%, #1a2424 100%),
+    radial-gradient(circle at 30% 70%, rgba(163, 136, 123, 0.1) 0%, transparent 50%);
+  position: relative;
+  overflow: hidden;
+}
+
+.content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.03) 50%, transparent 60%);
+  animation: shimmerBanner 4s ease-in-out infinite;
+}
+
+@keyframes shimmerBanner {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.imageContainer {
+  width: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.image:hover {
+  transform: scale(1.08);
+}
+
+
+
+.title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.8rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.description {
+  font-size: 1.4rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 1.5rem;
+  max-width: 85%;
+  font-family: 'Cormorant Garamond', serif;
+}
+.buttonContainer {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.button {
+  background: transparent;
+  border: 2px solid #f6e9d9;
+  color: #f6e9d9;
+  padding: 0.7rem 1.6rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Cormorant Garamond', serif;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+
+.button:hover {
+  background: #f6e9d9;
+  color: var(--cor-do-banner);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(246, 233, 217, 0.3);
+}
+
+/* Notebooks/Laptops - tamanho reduzido */
+@media (max-width: 1366px) and (min-width: 1024px) {
+  .title {
+    font-size: 3rem;
+  }
+
+  .description {
+    font-size: 1.15rem;
+  }
+}
+
+/* Tablets pequenos e notebooks menores */
+@media (max-width: 1023px) and (min-width: 769px) {
+  .title {
+    font-size: 2.7rem;
+  }
+
+  .description {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .imageContainer {
+    width: 100%;
+    height: 200px;
+    order: -1;
+  }
+
+  .content {
+    width: 100%;
+    padding: 2rem 1.5rem;
+    order: 1;
+    background: var(--cor-do-banner);
+  }
+
+  .title {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .description {
+    font-size: 0.95rem;
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  .button {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 2rem 1.5rem;
+  }
+
+  .title {
+    font-size: 1.9rem;
+  }
+
+  .description {
+    font-size: 0.95rem;
+  }
+
+  .button {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
