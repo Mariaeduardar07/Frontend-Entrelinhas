@@ -6,14 +6,11 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import Banner from "@/components/bannerHome";
 import Objectives from "@/components/objectives";
+import AuthorCarousel from "@/components/authorCarousel";
 
 export default function Home() {
-  const [stats, setStats] = useState({
-    autores: 0,
-    livros: 0,
-    favoritos: 0
-  });
   const [loading, setLoading] = useState(true);
+
   return (
     <div className={styles.container}>
       <Banner
@@ -25,6 +22,8 @@ export default function Home() {
       />
 
       <Objectives />
+      <AuthorCarousel />
+
     </div>
   );
 }
