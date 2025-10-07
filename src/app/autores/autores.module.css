@@ -224,6 +224,7 @@
   padding: 0 2rem 2rem;
   position: relative;
   align-items: stretch;
+  grid-auto-rows: 1fr;
 }
 
 /* Animação de entrada */
