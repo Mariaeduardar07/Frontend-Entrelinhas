@@ -4,6 +4,20 @@ import styles from "./authorCard.module.css";
 export default function AuthorCard({ autor, getImageUrl }) {
   const fallbackImage = "/image/imgBanner.png";
 
+  // If consumer doesn't pass getImageUrl, use an internal fallback
+  const resolveImageUrl =
+    typeof getImageUrl === "function"
+      ? getImageUrl
+      : (a) => {
+          if (!a || !a.imageUrl) return fallbackImage;
+          if (a.imageUrl.startsWith("public/")) {
+            let url = "/" + a.imageUrl.substring(7);
+            if (!url.includes(".")) url += ".png";
+            return url;
+          }
+          return a.imageUrl;
+        };
+
   return (
     <Link href={`/autores/${autor.id}`} className={styles.cardLink}>
       <article className={styles.autorCard}>
@@ -12,10 +26,12 @@ export default function AuthorCard({ autor, getImageUrl }) {
         <div className={styles.imageWrapper}>
           <div className={styles.imageFrame}>
             <img
-              src={getImageUrl(autor)}
+              src={resolveImageUrl(autor)}
               alt={autor.nome}
               className={styles.autorImage}
-              onError={(e) => { e.target.src = fallbackImage; }}
+              onError={(e) => {
+                e.target.src = fallbackImage;
+              }}
             />
           </div>
         </div>

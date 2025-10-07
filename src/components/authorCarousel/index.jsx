@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import axios from "axios";
-import AuthorCard from "../authorCarouselCard";
+import AuthorCarouselCard from "../authorCarouselCard";
 import styles from "./authorCarousel.module.css";
 
 // Import Swiper styles
@@ -116,7 +116,7 @@ export default function authorCarousel() {
         >
           {autores.map((autor) => (
             <SwiperSlide key={autor.id} className={styles.swiperSlide}>
-              <AuthorCard autor={autor} />
+              <AuthorCarouselCard autor={autor} />
             </SwiperSlide>
           ))}
         </Swiper>
