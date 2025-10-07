@@ -24,9 +24,6 @@
   font-weight: 700;
   color: var(--cor-do-banner);
   margin-bottom: 2rem;
-  background: linear-gradient(135deg, var(--cor-do-banner) 0%, var(--cor-3-detalhes) 50%, #2c3838 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
   line-height: 1.1;
   position: relative;
@@ -41,7 +38,7 @@
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, transparent 0%, var(--cor-3-detalhes) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, var(--cor-do-banner) 50%, transparent 100%);
   border-radius: 2px;
 }
 

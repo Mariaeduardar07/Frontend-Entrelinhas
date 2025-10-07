@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { BookOpen, Users, Heart } from "lucide-react";
-import Link from "next/link";
+import { useState } from "react";
 import styles from "./page.module.css";
 import Banner from "@/components/bannerHome";
 import Objectives from "@/components/objectives";
 import AuthorCarousel from "@/components/authorCarousel";
+import CTASection from "@/components/CTASection";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -23,7 +22,7 @@ export default function Home() {
 
       <Objectives />
       <AuthorCarousel />
-
+      <CTASection />
     </div>
   );
 }
