@@ -1,0 +1,420 @@
+.logoImg {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
+.header {
+  background: #f6f4f0f2;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 12px rgba(44, 56, 56, 0.1);
+  border-bottom: 1px solid rgba(44, 56, 56, 0.1);
+  padding: 0.5rem 0;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+}
+
+.headerContent {
+  width: 100%;
+  margin: 0;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--cor-3-detalhes);
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 8px rgba(4, 50, 34, 0.1);
+  line-height: 1.1;
+  margin-top: 8px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navItem {
+  position: relative;
+}
+
+.navLink {
+  color: var(--cor-5);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.6rem 1.2rem;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  box-shadow: 0 1px 4px rgba(44, 56, 56, 0.05);
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.navLink:hover {
+  color: var(--cor-0);
+  background: var(--cor-5);
+  transform: scale(1.07) translateY(-2px);
+  box-shadow: 0 2px 8px rgba(44, 56, 56, 0.2);
+}
+
+.navLink.active {
+  color: var(--cor-3);
+  background: var(--cor-1);
+  box-shadow: 0 2px 12px rgba(212, 178, 167, 0.12);
+}
+
+/* Botão Hambúrguer */
+.hamburger {
+  display: none;
+  background: linear-gradient(135deg, var(--cor-do-banner), rgba(44, 56, 56, 0.9));
+  border: none;
+  cursor: pointer;
+  padding: 0.8rem;
+  color: #ffffff;
+  z-index: 1001;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 12px;
+  box-shadow: 
+    0 4px 15px rgba(44, 56, 56, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hamburger::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.hamburger:hover::before {
+  left: 100%;
+}
+
+.hamburger:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 
+    0 8px 25px rgba(44, 56, 56, 0.3),
+    0 4px 15px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, rgba(44, 56, 56, 0.9), var(--cor-do-banner));
+}
+
+.hamburger:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Menu Mobile */
+.mobileNav {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: min(85vw, 380px);
+  height: 100vh;
+  background: 
+    linear-gradient(135deg, rgba(246, 244, 240, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 999;
+  transition: right 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 
+    -20px 0 60px rgba(0, 0, 0, 0.12),
+    -5px 0 25px rgba(0, 0, 0, 0.06);
+  border-left: 1px solid rgba(163, 136, 123, 0.15);
+  overflow-y: auto;
+}
+
+.mobileNavOpen {
+  right: 0;
+}
+
+.mobileNavList {
+  list-style: none;
+  margin: 0;
+  padding: 7rem 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+}
+
+.mobileNavItem {
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(163, 136, 123, 0.08);
+}
+
+.mobileNavItem:hover {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(163, 136, 123, 0.2);
+  transform: translateX(-5px);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.1),
+    0 3px 10px rgba(163, 136, 123, 0.15);
+}
+
+.mobileNavLink {
+  color: var(--cor-5);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.2rem;
+  padding: 1.2rem 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 16px;
+}
+
+.mobileNavLink::before {
+  content: '';
+  position: absolute;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cor-3);
+  opacity: 0.4;
+  transition: all 0.3s ease;
+}
+
+.mobileNavLink:hover {
+  color: var(--cor-do-banner);
+  padding-left: 2.5rem;
+}
+
+.mobileNavLink:hover::before {
+  background: var(--cor-do-banner);
+  opacity: 1;
+  transform: translateY(-50%) scale(1.5);
+}
+
+.mobileNavLink.active {
+  color: var(--cor-do-banner);
+  font-weight: 600;
+  padding-left: 2.5rem;
+  background: 
+    linear-gradient(135deg, rgba(163, 136, 123, 0.1) 0%, rgba(85, 104, 119, 0.05) 100%);
+  border: 1px solid rgba(163, 136, 123, 0.2);
+}
+
+.mobileNavLink.active::before {
+  background: var(--cor-do-banner);
+  opacity: 1;
+  transform: translateY(-50%) scale(1.5);
+  box-shadow: 0 0 8px rgba(163, 136, 123, 0.4);
+}
+
+/* Header do menu mobile */
+.mobileNavHeader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 2.5rem 2rem 2rem;
+  background: 
+    linear-gradient(135deg, rgba(246, 244, 240, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(163, 136, 123, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mobileNavTitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--cor-do-banner);
+  margin: 0;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.mobileNavHeader::after {
+  content: '';
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cor-3), var(--cor-do-banner));
+  border-radius: 2px;
+}
+
+
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at center, rgba(44, 56, 56, 0.6) 0%, rgba(0, 0, 0, 0.4) 100%);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 998;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.overlayVisible {
+  opacity: 1;
+}
+
+/* Desktop - ocultar hambúrguer, mostrar navegação normal */
+@media (min-width: 1025px) {
+  .hamburger {
+    display: none !important;
+  }
+  
+  .nav {
+    display: flex !important;
+  }
+  
+  .mobileNav {
+    display: none !important;
+  }
+}
+
+/* Tablet - mostrar hambúrguer */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .headerContent {
+    padding: 0 1.5rem;
+  }
+  
+  .nav {
+    display: none;
+  }
+  
+  .hamburger {
+    display: flex;
+  }
+  
+  .mobileNav {
+    display: block;
+    width: min(70vw, 360px);
+  }
+  
+  .mobileNavList {
+    padding: 7rem 2rem 3rem;
+    gap: 0.75rem;
+  }
+  
+  .mobileNavLink {
+    font-size: 1.3rem;
+    padding: 1.3rem 1.5rem;
+  }
+  
+  .mobileNavHeader {
+    padding: 2.5rem 2rem 2rem;
+  }
+}
+
+/* Mobile - mostrar hambúrguer */
+@media (max-width: 768px) {
+  .header {
+    padding: 0.7rem 0;
+  }
+  
+  .headerContent {
+    padding: 0 1rem;
+  }
+  
+  .logo {
+    gap: 0.5rem;
+  }
+  
+  .logoImg {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .title {
+    font-size: 1.6rem;
+    line-height: 1;
+    margin-top: 6px;
+  }
+  
+  .nav {
+    display: none;
+  }
+  
+  .hamburger {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    padding: 0.6rem;
+  }
+  
+  .mobileNav {
+    display: block;
+    width: min(90vw, 320px);
+  }
+  
+  .mobileNavList {
+    padding: 6rem 1.5rem 2rem;
+  }
+  
+  .mobileNavLink {
+    font-size: 1.1rem;
+    padding: 1rem 1.2rem;
+  }
+  
+  .mobileNavHeader {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+  
+  .mobileNavTitle {
+    font-size: 1.6rem;
+  }
+}
