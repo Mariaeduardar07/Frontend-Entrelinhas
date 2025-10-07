@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, BookOpen, Calendar, Heart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import Link from "next/link";
 import styles from "./bookCarrossel.module.css";
 
 export default function BookCarrossel({ books, authorName, favoritos = [], toggleFavorito }) {
@@ -41,10 +42,7 @@ export default function BookCarrossel({ books, authorName, favoritos = [], toggl
     }
   };
 
-  // Ir para página de detalhes do livro
-  const handleBookClick = (bookId) => {
-    router.push(`/livros/${bookId}`);
-  };
+
 
   // Toggle favorito do livro
   const toggleBookFavorite = (bookId, e) => {
@@ -140,10 +138,10 @@ export default function BookCarrossel({ books, authorName, favoritos = [], toggl
             }}
           >
             {books.map((book) => (
-              <div 
+              <Link 
                 key={book.id}
+                href={`/livros/${book.id}`}
                 className={styles.bookCard}
-                onClick={() => handleBookClick(book.id)}
                 style={{ width: `${100 / books.length}%` }}
               >
                 <div className={styles.bookImageContainer}>
@@ -196,7 +194,7 @@ export default function BookCarrossel({ books, authorName, favoritos = [], toggl
                     </p>
                   )}
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

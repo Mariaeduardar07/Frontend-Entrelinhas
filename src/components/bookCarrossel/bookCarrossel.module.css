@@ -102,22 +102,26 @@
 .bookImageContainer {
   position: relative;
   width: 100%;
-  height: 220px;
+  height: 280px;
   margin-bottom: 0.8rem;
   overflow: hidden;
-  background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+  background: transparent;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .bookImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   transition: transform 0.3s ease;
 }
 
 .bookCard:hover .bookImage {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 /* Botão de Favorito */
@@ -299,7 +303,7 @@
   }
   
   .bookImageContainer {
-    height: 200px;
+    height: 250px;
   }
   
   .booksWrapper {
@@ -335,7 +339,7 @@
   }
   
   .bookImageContainer {
-    height: 170px;
+    height: 220px;
   }
   
   .bookTitle {
@@ -371,7 +375,7 @@
   }
   
   .bookImageContainer {
-    height: 150px;
+    height: 200px;
   }
   
   .favoriteButton {

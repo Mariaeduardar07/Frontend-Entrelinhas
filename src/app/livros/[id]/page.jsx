@@ -5,13 +5,11 @@ import { ArrowLeft, Calendar, User, BookOpen, Heart } from "lucide-react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import axios from "axios";
 import styles from "./detalhesLivro.module.css";
 
 export default function DetalhesLivroPage({ params }) {
   const resolvedParams = use(params);
-  const router = useRouter();
   const [livro, setLivro] = useState(null);
   const [autor, setAutor] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -27,17 +25,19 @@ export default function DetalhesLivroPage({ params }) {
   const fetchLivroData = async (livroId) => {
     try {
       setLoading(true);
-      const [livroResponse, autoresResponse] = await Promise.all([
-        axios.get("http://localhost:5000/book"),
-        axios.get("http://localhost:5000/author")
-      ]);
-
-      const livroEncontrado = livroResponse.data.find(l => l.id === parseInt(livroId));
+      
+      // Buscar livro específico primeiro
+      const livroResponse = await axios.get(`http://localhost:5000/book/${livroId}`);
+      const livroEncontrado = livroResponse.data;
       
       if (!livroEncontrado) {
         setError("Livro não encontrado");
         return;
       }
+      
+      // Buscar apenas o autor deste livro
+      const autorResponse = await axios.get(`http://localhost:5000/author/${livroEncontrado.authorId}`);
+      const autorEncontrado = autorResponse.data;
 
       // Processar personagens se vier como string
       if (livroEncontrado.characters && typeof livroEncontrado.characters === 'string') {
@@ -52,9 +52,6 @@ export default function DetalhesLivroPage({ params }) {
             .filter(char => char.length > 0);
         }
       }
-
-      // Encontrar o autor do livro
-      const autorEncontrado = autoresResponse.data.find(a => a.id === livroEncontrado.authorId);
 
       setLivro(livroEncontrado);
       setAutor(autorEncontrado);
@@ -142,7 +139,7 @@ export default function DetalhesLivroPage({ params }) {
         <div className={styles.detailsCard}>
           <div className={styles.imageSection}>
             <img
-              src={livro.image || '/image/imgBanner.png'}
+              src={getImageUrl(livro)}
               alt={livro.nome || livro.title}
               className={styles.image}
               onError={(e) => {
@@ -176,36 +173,19 @@ export default function DetalhesLivroPage({ params }) {
                 </div>
               )}
 
-              {livro.description && (
+              {(livro.description || livro.summary) && (
                 <div className={styles.detailItem}>
-                  <span className={styles.label}>Descrição</span>
-                  <p className={styles.value}>{livro.description}</p>
+                  <span className={styles.label}>Sobre o Livro</span>
+                  <p className={styles.value}>{livro.description || livro.summary}</p>
                 </div>
               )}
 
-              {livro.summary && (
-                <div className={styles.detailItem}>
-                  <span className={styles.label}>Resumo</span>
-                  <p className={styles.value}>{livro.summary}</p>
-                </div>
-              )}
-
-              {livro.publicationDate && (
-                <div className={styles.detailItem}>
-                  <span className={styles.label}>Data de Publicação</span>
-                  <div className={styles.value}>
-                    <Calendar size={18} />
-                    {new Date(livro.publicationDate).toLocaleDateString('pt-BR')}
-                  </div>
-                </div>
-              )}
-
-              {livro.year_publication && (
+              {(livro.year_publication || livro.publicationDate) && (
                 <div className={styles.detailItem}>
                   <span className={styles.label}>Ano de Publicação</span>
                   <div className={styles.value}>
                     <Calendar size={18} />
-                    {livro.year_publication}
+                    {livro.year_publication || new Date(livro.publicationDate).getFullYear()}
                   </div>
                 </div>
               )}
@@ -273,12 +253,6 @@ export default function DetalhesLivroPage({ params }) {
                 <BookOpen size={16} />
                 Livro
               </div>
-              {(livro.year_publication || livro.publicationDate) && (
-                <div className={styles.badge}>
-                  <Calendar size={16} />
-                  {livro.year_publication || new Date(livro.publicationDate).getFullYear()}
-                </div>
-              )}
             </div>
           </div>
         </div>

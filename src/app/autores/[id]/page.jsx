@@ -34,10 +34,12 @@ export default function DetalhesAutor({ params }) {
         const livrosResponse = await axios.get("http://localhost:5000/book");
         console.log("✅ TODOS OS LIVROS:", livrosResponse.data);
         
-        // Filtra livros do autor atual
-        const livrosDoAutor = livrosResponse.data.filter(livro => 
-          livro.authorId === parseInt(resolvedParams.id)
-        );
+        // Filtra livros do autor atual e remove duplicatas
+        const livrosDoAutor = livrosResponse.data
+          .filter(livro => livro.authorId === parseInt(resolvedParams.id))
+          .filter((livro, index, array) => 
+            array.findIndex(l => l.id === livro.id) === index
+          );
         console.log("📚 LIVROS DO AUTOR:", livrosDoAutor);
         setLivros(livrosDoAutor);
         
@@ -61,13 +63,13 @@ export default function DetalhesAutor({ params }) {
     }
   }, [resolvedParams.id]);
 
-  // Processa a imageUrl do backend
-  const getImageUrl = (autor) => {
-    if (!autor.imageUrl) return '/image/imgBanner.png';
+  // Processa a imageUrl (funciona para autor e livro)
+  const getImageUrl = (item) => {
+    if (!item.imageUrl) return '/image/imgBanner.png';
     
     // Se a imageUrl começa com 'public/', remove essa parte
-    if (autor.imageUrl.startsWith('public/')) {
-      let url = '/' + autor.imageUrl.substring(7); // Remove 'public/' e adiciona '/'
+    if (item.imageUrl.startsWith('public/')) {
+      let url = '/' + item.imageUrl.substring(7); // Remove 'public/' e adiciona '/'
       
       // Se não tem extensão, adiciona .png
       if (!url.includes('.')) {
@@ -78,18 +80,7 @@ export default function DetalhesAutor({ params }) {
     }
     
     // Se já é uma URL completa ou caminho absoluto, usa como está
-    return autor.imageUrl;
-  };
-
-  // Processa a imageUrl dos livros
-  const getBookImageUrl = (livro) => {
-    if (!livro.imageUrl) return '/image/imgBanner.png';
-    
-    if (livro.imageUrl.startsWith('public/')) {
-      return '/' + livro.imageUrl.substring(7);
-    }
-    
-    return livro.imageUrl;
+    return item.imageUrl;
   };
 
   // Alterna favorito do autor
@@ -131,42 +122,8 @@ export default function DetalhesAutor({ params }) {
     }
   };
 
-  // Adiciona livro aos favoritos
-  const toggleLivroFavorito = (livro) => {
-    const favoritosIds = JSON.parse(localStorage.getItem('livrosFavoritos') || '[]');
-    const livroId = livro.id;
-    
-    if (favoritosIds.includes(livroId)) {
-      // Remove dos favoritos
-      const novosIds = favoritosIds.filter(id => id !== livroId);
-      localStorage.setItem('livrosFavoritos', JSON.stringify(novosIds));
-      toast.success("Livro removido dos favoritos!");
-    } else {
-      // Adiciona aos favoritos
-      const novosIds = [...favoritosIds, livroId];
-      localStorage.setItem('livrosFavoritos', JSON.stringify(novosIds));
-      toast.success("Livro adicionado aos favoritos!");
-    }
-  };
-
-  // Função para verificar se uma URL de imagem é válida
-  const isValidImageUrl = (url) => {
-    if (!url) return false;
-    try {
-      new URL(url);
-      return true;
-    } catch {
-      return false;
-    }
-  };
-
-  // Função para tratar erros de imagem
-  const handleImageError = () => {
-    setImageError(true);
-  };
-
   // Fallback para imagem padrão
-  const fallbackImage = "/icons/favicon.ico";
+  const fallbackImage = "/image/imgBanner.png";
 
   if (loading) {
     return (
@@ -230,36 +187,34 @@ export default function DetalhesAutor({ params }) {
           </div>
 
           <div className={styles.infoSection}>
+            <div className={styles.cardMeta}>
+              <span className={styles.badge}>
+                <BookOpen size={12} />
+                {livros.length} {livros.length === 1 ? 'livro' : 'livros'}
+              </span>
+            </div>
+
             <div className={styles.detailsGrid}>
-              <div className={styles.detailItem}>
-                <span className={styles.label}>Biografia:</span>
-                <span className={styles.value}>
-                  {autor.biography ? autor.biography : <span className={styles.placeholder}>Biografia não disponível</span>}
-                </span>
-              </div>
+              {autor.biography && (
+                <div className={styles.detailItem}>
+                  <span className={styles.label}>Biografia:</span>
+                  <span className={styles.value}>{autor.biography}</span>
+                </div>
+              )}
 
-              <div className={styles.detailItem}>
-                <span className={styles.label}>Período Histórico:</span>
-                <span className={styles.value}>
-                  {autor.historical_period ? autor.historical_period : <span className={styles.placeholder}>Período não disponível</span>}
-                </span>
-              </div> 
+              {autor.historical_period && (
+                <div className={styles.detailItem}>
+                  <span className={styles.label}>Período Histórico:</span>
+                  <span className={styles.value}>{autor.historical_period}</span>
+                </div>
+              )}
 
-              <div className={styles.cardMeta}>
-                <span className={styles.badge}>
-                  <BookOpen size={12} />
-                  {livros.length} {livros.length === 1 ? 'livro' : 'livros'}
-                </span>
-              </div>
-
-              <div className={styles.detailItem}>
-                <span className={styles.label}>Curiosidades:</span>
-                <span className={styles.value}>
-                  {autor.curiosities ? autor.curiosities : <span className={styles.placeholder}>Curiosidades não disponíveis</span>}
-                </span>
-              </div>
-
-
+              {autor.curiosities && (
+                <div className={styles.detailItem}>
+                  <span className={styles.label}>Curiosidades:</span>
+                  <span className={styles.value}>{autor.curiosities}</span>
+                </div>
+              )}
             </div>
           </div>
         </div>

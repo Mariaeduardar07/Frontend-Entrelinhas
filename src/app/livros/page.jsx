@@ -142,7 +142,7 @@ export default function DetalhesLivroPage({ params }) {
         <div className={styles.detailsCard}>
           <div className={styles.imageSection}>
             <img
-              src={livro.image || '/image/imgBanner.png'}
+              src={getImageUrl(livro)}
               alt={livro.nome || livro.title}
               className={styles.image}
               onError={(e) => {
