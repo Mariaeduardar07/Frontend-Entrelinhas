@@ -39,7 +39,7 @@
     background: var(--cor-1);
     border: 1px solid var(--cor-2);
     padding: 8px 16px;
-    border-radius: 50px;
+    border-radius: 0;
     color: var(--cor-3-detalhes);
     font-size: 0.9rem;
     font-weight: 500;
@@ -86,7 +86,7 @@
         0 4px 20px rgba(163, 136, 123, 0.12),
         inset 0 1px 0 rgba(255, 255, 255, 0.8);
     border: 1px solid rgba(163, 136, 123, 0.2);
-    border-radius: 20px;
+    border-radius: 0;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     backdrop-filter: blur(15px);
     position: relative;
@@ -183,7 +183,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 30px;
+    border-radius: 0;
     border: 8px solid rgba(255, 255, 255, 0.8);
     box-shadow: 
         0 20px 60px rgba(0, 0, 0, 0.15),
@@ -206,7 +206,7 @@
     right: -30px;
     bottom: -30px;
     background: linear-gradient(135deg, var(--cor-2), var(--cor-3-detalhes));
-    border-radius: 35px;
+    border-radius: 0;
     z-index: -1;
     filter: blur(40px);
     opacity: 0.5;

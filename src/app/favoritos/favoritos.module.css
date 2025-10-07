@@ -1,0 +1,462 @@
+.container {
+  min-height: 100vh;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(163, 136, 123, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(85, 104, 119, 0.05) 0%, transparent 50%),
+    linear-gradient(135deg, var(--cor-do-fundo) 0%, #f2ede6 100%);
+  padding: 0;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.header {
+  position: relative;
+  text-align: center;
+  padding: 4rem 2rem 2rem;
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(246, 244, 240, 0.8) 100%);
+  border-radius: 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 30% 20%, rgba(163, 136, 123, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(85, 104, 119, 0.08) 0%, transparent 50%);
+  z-index: 1;
+}
+
+.header > * {
+  position: relative;
+  z-index: 2;
+}
+
+.headerIcon {
+  color: #e74c3c;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  color: var(--cor-do-banner);
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--cor-do-banner) 0%, var(--cor-3-detalhes) 50%, #2c3838 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+  position: relative;
+  display: inline-block;
+}
+
+.subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  color: var(--cor-do-banner);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+  opacity: 0.85;
+  font-weight: 400;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 0;
+  margin: 2rem;
+  backdrop-filter: blur(10px);
+}
+
+.heartIcon {
+  color: #e74c3c;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.loading p {
+  color: var(--cor-do-banner);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  padding: 0 2rem;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid rgba(163, 136, 123, 0.2);
+  border-radius: 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--cor-do-banner);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.tab:hover {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(163, 136, 123, 0.4);
+  transform: translateY(-2px);
+}
+
+.tab.active {
+  background: var(--cor-3-detalhes);
+  color: white;
+  border-color: var(--cor-3-detalhes);
+  box-shadow: 0 4px 15px rgba(163, 136, 123, 0.3);
+}
+
+/* Conteúdo */
+.content {
+  padding: 0 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.8rem;
+  margin-bottom: 3rem;
+}
+
+.card {
+  position: relative;
+  background: 
+    linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(246, 244, 240, 0.95) 100%);
+  border-radius: 0;
+  padding: 1.5rem;
+  border: 1px solid rgba(163, 136, 123, 0.15);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  backdrop-filter: blur(15px);
+  box-shadow: 
+    0 8px 25px rgba(45, 48, 71, 0.08),
+    0 3px 10px rgba(163, 136, 123, 0.05);
+  width: 100%;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(163, 136, 123, 0.3);
+  box-shadow: 
+    0 15px 40px rgba(45, 48, 71, 0.12),
+    0 6px 20px rgba(163, 136, 123, 0.08);
+}
+
+.removeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(231, 76, 60, 0.9);
+  color: white;
+  border: none;
+  border-radius: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 20;
+  backdrop-filter: blur(10px);
+}
+
+.removeButton:hover {
+  background: #c0392b;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+}
+
+.cardLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.imageWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.image {
+  width: 110px;
+  height: 110px;
+  border-radius: 0;
+  object-fit: cover;
+  border: 3px solid rgba(163, 136, 123, 0.3);
+  transition: all 0.3s ease;
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+  border-color: rgba(163, 136, 123, 0.5);
+}
+
+.cardContent {
+  text-align: center;
+}
+
+.itemName {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--cor-do-banner);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.itemType {
+  font-size: 0.9rem;
+  color: var(--cor-3-detalhes);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 0.5rem 0;
+}
+
+.itemDate {
+  font-size: 0.85rem;
+  color: var(--cor-3);
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* Estado vazio */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 0;
+  padding: 3rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(163, 136, 123, 0.1);
+}
+
+.emptyIcon {
+  color: var(--cor-3-detalhes);
+  margin-bottom: 1.5rem;
+  opacity: 0.7;
+}
+
+.empty h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  color: var(--cor-do-banner);
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+}
+
+.empty p {
+  color: var(--cor-3);
+  font-size: 1.1rem;
+  margin: 0 0 2rem 0;
+  line-height: 1.5;
+}
+
+.exploreButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: var(--cor-3-detalhes);
+  color: white;
+  text-decoration: none;
+  border-radius: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(163, 136, 123, 0.3);
+}
+
+.exploreButton:hover {
+  background: var(--cor-do-banner);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(163, 136, 123, 0.4);
+}
+
+.exploreBookButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--cor-3-detalhes);
+  color: white;
+  text-decoration: none;
+  border-radius: 0;
+  font-weight: 500;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(163, 136, 123, 0.2);
+  margin-top: 0.75rem;
+  width: fit-content;
+}
+
+.exploreBookButton:hover {
+  background: var(--cor-do-banner);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(163, 136, 123, 0.3);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .header {
+    padding: 3rem 1rem 2rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0;
+  }
+  
+  .title {
+    font-size: clamp(2rem, 6vw, 2.8rem);
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .tabs {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+  
+  .tab {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .content {
+    padding: 0 1rem;
+  }
+  
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .card {
+    padding: 1.3rem;
+    border-radius: 0;
+    width: 100%;
+  }
+  
+  .image {
+    width: 95px;
+    height: 95px;
+  }
+  
+  .itemName {
+    font-size: 1.3rem;
+  }
+  
+  .empty {
+    padding: 2rem 1.5rem;
+    min-height: 40vh;
+  }
+  
+  .empty h3 {
+    font-size: 1.6rem;
+  }
+  
+  .empty p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 2.5rem 0.5rem 1.5rem;
+  }
+  
+  .title {
+    font-size: clamp(1.8rem, 5vw, 2.2rem);
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .content {
+    padding: 0 0.5rem;
+  }
+  
+  .tabs {
+    padding: 0 0.5rem;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .card {
+    padding: 1.2rem;
+    width: 100%;
+  }
+  
+  .removeButton {
+    width: 32px;
+    height: 32px;
+    top: 0.8rem;
+    right: 0.8rem;
+  }
+  
+  .image {
+    width: 85px;
+    height: 85px;
+  }
+  
+  .itemName {
+    font-size: 1.2rem;
+  }
+  
+  .empty {
+    padding: 1.5rem 1rem;
+  }
+}

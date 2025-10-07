@@ -116,7 +116,7 @@ export default function Header() {
             <li className={styles.mobileNavItem}>
               <Link 
                 href="/sobre" 
-                className={`${styles.mobileNavLink} ${pathname === '/sobre' ? styles.active : ''}`}
+                className={`${styles.mobileNavLink} ${pathname === '/sobreMim' ? styles.active : ''}`}
                 onClick={closeMenu}
               >
                 Sobre Mim
